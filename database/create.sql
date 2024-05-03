@@ -7,15 +7,15 @@ CREATE database pafAssessment;
 
 use pafAssessment;
 
-@@beers.sql
+source beers.sql
 
-@@breweries.sql
+source breweries.sql
 
-@@categories.sql
+source categories.sql
 
-@@geocodes.sql
+source geocodes.sql
 
-@@styles.sql
+source styles.sql
 
 grant all privileges on pafAssessment.* to 'fred'@'localhost';
 flush privileges;

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Brewery Information</title>
+	</head>
+	<body>
+
+		<h1 data-th-text="${breweryName}"></h1>
+        <a href="/">Back</a>
+        <table data-th-unless="${brewery.beers.isEmpty()}">
+            <tbody>
+                <tr>
+                    <td>Description</td>
+                    <td data-th-text="${brewery.description}"></td>
+                </tr>
+                <tr>
+                    <td>Address</td>
+                    <td>
+                        <p data-th-text="${brewery.address1}"></p>
+                        <p data-th-text="${brewery.address2}"></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Phone</td>
+                    <td data-th-text="${brewery.phone}"></td>
+                </tr>
+                <tr>
+                    <td>Website</td>
+                    <td>
+                        <a data-th-href="${brewery.website}" data-th-text="${brewery.website}"></a>
+                    </td>
+                </tr>
+    
+            </tbody>
+            
+        </table>
+
+        <h3 data-th-unless="${brewery.beers.isEmpty()}">Beers</h3>
+        
+<!-- 
+		<table border="1" data-th-unless="${brewery.isEmpty()}">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Description</th>
+                    <th>Quantity</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-th-each="s: ${beers}" data-th-object="${s}">
+					<td>
+						<span data-th-text="*{beerName}"></span> 
+					</td>
+                    <td>
+						<span data-th-text="*{beerDescription}"></span> 
+					</td>
+					<td>
+						<a data-th-href="@{/beer/brewery/{id}?breweryName={breweryName}(id=*{breweryId}, breweryName=*{breweryName})}">
+							<span data-th-text="*{breweryName}"></span>
+						</a>
+					</td>
+				</tr>
+			</tbody>
+		</table> -->
+
+        <form method="POST" th:action="@{/brewery/{id}/order(id=${brewery.breweryId})}"  data-th-unless="${brewery.beers.isEmpty()}">
+            <button type="submit">Place Order</button>
+            <!-- <div class="mb-3">
+                <label for="name" class="form-label">Task Name</label>
+                <input type="text" class="form-control" name="name" th:field="*{name}">
+            </div>
+            <div class="alert alert-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div> -->
+
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Quantity</th>
+                        <th hidden="true" >ToBeHidden</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-th-each="s: ${brewery.beers}" data-th-object="${s}">
+                        <td>
+                            <span data-th-text="*{beerName}"></span> 
+                        </td>
+                        <td>
+                            <span data-th-text="*{beerDescription}"></span> 
+                        </td>
+                        <td>
+                            <input type="number" class="form-control" name="quantity" value="0">
+                        </td>
+                        <td >
+                            <input type="number" hidden="true" class="form-control" name="beerId" data-th-value="*{beerId}">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+        </form>
+
+        <h3 data-th-if="${brewery.beers.isEmpty()}">
+			Brewery Not Found
+		</h3>
+
+	</body>
+</html>
