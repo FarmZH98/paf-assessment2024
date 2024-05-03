@@ -75,6 +75,7 @@ public class BeerController {
 	
 	//TODO Task 5 - view 2, place order
 	//>>>>>>> PlaceOrder(): {quantity=[2, 2, 0, 0, 0, 0, 0, 0], beerId=[5735, 5736, 5737, 5738, 5739, 5740, 5741, 5843]}
+	//throws default exception page if unable to place order
 	@PostMapping(path={"/brewery/{breweryId}/order"}) 
     public ModelAndView placeOrder(@PathVariable("breweryId") int id, @RequestBody MultiValueMap<String,String> beerForm) throws Exception {
 

@@ -53,7 +53,7 @@ public class BeerService {
 		// TODO: Task 5 
 		String orderId = UUID.randomUUID().toString().substring(0, 8);
 		order.setOrderId(orderId);
-		order.setOrderDate(new Date());
+		order.setDate(new Date());
 		orderRepository.order(order);
 
 		return orderId;

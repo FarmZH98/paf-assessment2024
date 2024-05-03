@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Order {
     private String orderId;
-    private Date orderDate;
+    private Date date; //orderDate
     private int breweryId;
     private List<BeerOrder> orders;
 
@@ -13,7 +13,7 @@ public class Order {
 
     public Order(String orderId, Date orderDate, int breweryId, List<BeerOrder> orders) {
         this.orderId = orderId;
-        this.orderDate = orderDate;
+        this.date = orderDate;
         this.breweryId = breweryId;
         this.orders = orders;
     }
@@ -26,12 +26,12 @@ public class Order {
         this.orderId = orderId;
     }
 
-    public Date getOrderDate() {
-        return orderDate;
+    public Date getDate() {
+        return date;
     }
 
-    public void setOrderDate(Date orderDate) {
-        this.orderDate = orderDate;
+    public void setDate(Date orderDate) {
+        this.date = orderDate;
     }
 
     public int getBreweryId() {
